@@ -1,0 +1,17 @@
+#####
+# start mysql
+start mysql server on windows
+"C:\Users\doyan\Documents\mysql\mysql-5.7.17-winx64\bin\mysqld.exe" --defaults-file="C:\\Users\\doyan\\Documents\\mysql\\config.ini" --log_syslog=0
+
+shutdown mysql server on windows
+"C:\Users\doyan\Documents\mysql\mysql-5.7.17-winx64\bin\mysqladmin.exe" --defaults-file="C:\\Users\\doyan\\Documents\\mysql\\config.ini" shutdown -uroot -p
+password
+
+login to mysql server
+"C:\Users\doyan\Documents\mysql\mysql-5.7.17-winx64\bin\mysql.exe" -uroot --port 55555 -p
+password
+
+login root
+CREATE DATABASE orderdb;
+GRANT ALL PRIVILEGES ON *.* TO 'orderdbuser'@'localhost' IDENTIFIED BY 'orderdbpassword';
+FLUSH PRIVILEGES;
