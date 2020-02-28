@@ -1,8 +1,5 @@
 package com.company;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +10,7 @@ public class PreDataLoader {
 
 	@Bean 
 	public CommandLineRunner dataLoader(StudentRepository sRepo, CourseRepository cRepo,
-			CourseRatingRepository courseRatingRepo) { 
+										CourseRegistrationRepository courseRegistrationRepository) {
 		
 		return new CommandLineRunner() {
 			@Override
@@ -34,7 +31,7 @@ public class PreDataLoader {
 		        cRepo.save(c2);
 		        cRepo.save(c3);
 		        
-		        System.out.println("Student like following course");
+		        /*System.out.println("Student like following course");
 		        Set<Course> s1LikeCourse = new HashSet<Course>();
 		        s1LikeCourse.add(c1); s1LikeCourse.add(c2); s1LikeCourse.add(c3);
 		        s1.setLikedCourses(s1LikeCourse);
@@ -43,10 +40,10 @@ public class PreDataLoader {
 		        Set<Course> s2LikeCourse = new HashSet<Course>();
 		        s2LikeCourse.add(c2); s2LikeCourse.add(c3);
 		        s2.setLikedCourses(s2LikeCourse);
-		        sRepo.save(s2);
+		        sRepo.save(s2);*/
 
 		        // the primary key of rating of student 1 and course 1
-		        CourseRatingKey courseRatingKey11 = new CourseRatingKey(1L, 1L);
+		        /*CourseRatingKey courseRatingKey11 = new CourseRatingKey(1L, 1L);
 		        CourseRatingKey courseRatingKey12 = new CourseRatingKey(1L, 2L);
 		        CourseRatingKey courseRatingKey13 = new CourseRatingKey(1L, 3L);
 				CourseRatingKey courseRatingKey21 = new CourseRatingKey(2L, 1L);
@@ -60,7 +57,17 @@ public class PreDataLoader {
 		        courseRatingRepo.save(courseRating11);
 		        courseRatingRepo.save(courseRating12);
 				courseRatingRepo.save(courseRating21);
-				courseRatingRepo.save(courseRating22);
+				courseRatingRepo.save(courseRating22);*/
+
+		        // student register course
+				CourseRegistration courseRegistration111 = new CourseRegistration(1L, s1, c1, 80);
+				courseRegistrationRepository.save(courseRegistration111);
+				CourseRegistration courseRegistration211 = new CourseRegistration(2L, s1, c1, 80);
+				courseRegistrationRepository.save(courseRegistration211);
+				CourseRegistration courseRegistration221 = new CourseRegistration(2L, s2, c1, 70); // not good. it is duplicate
+				courseRegistrationRepository.save(courseRegistration221);
+				CourseRegistration courseRegistration222 = new CourseRegistration(3L, s2, c2, 65);
+				courseRegistrationRepository.save(courseRegistration222);
 		        System.out.println("PreDataLoader done");
 			}
 		};

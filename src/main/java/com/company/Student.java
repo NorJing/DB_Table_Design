@@ -4,7 +4,6 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
-import javax.persistence.ManyToMany;
 
 import javax.persistence.Id;
 
@@ -15,7 +14,7 @@ public class Student {
 	@Column(name="id")
 	Long id;
 	
-	@ManyToMany
+	/*@ManyToMany
 	@JoinTable(
 			name = "student_liked_courses",
 			joinColumns = @JoinColumn(name = "student_id"), 
@@ -23,18 +22,21 @@ public class Student {
 	Set<Course> StudentlikedCourses;
 	
 	 @OneToMany(mappedBy = "student")
-	 private Set<CourseRating> ratings;
-	 
+	 private Set<CourseRating> ratings;*/
+
+	@OneToMany(mappedBy = "student")
+	Set<CourseRegistration> registrations;
+
 	public Student() {}
 
 	public Student(Long id) {
 		this.id = id;
 	}
 	
-	public Student(Long id, Set<Course> StudentlikedCourses) {
+	/*public Student(Long id, Set<Course> StudentlikedCourses) {
 		this.id = id;
 		this.StudentlikedCourses = StudentlikedCourses;
-	}
+	}*/
 
 	public Long getId() {
 		return id;
@@ -44,7 +46,7 @@ public class Student {
 		this.id = id;
 	}
 
-	public Set<Course> getLikedCourses() {
+	/*public Set<Course> getLikedCourses() {
 		return StudentlikedCourses;
 	}
 
@@ -58,8 +60,13 @@ public class Student {
 
 	public void setRatings(Set<CourseRating> ratings) {
 		this.ratings = ratings;
+	}*/
+
+	public Set<CourseRegistration> getRegistrations() {
+		return registrations;
 	}
-	
-	
-	
+
+	public void setRegistrations(Set<CourseRegistration> registrations) {
+		this.registrations = registrations;
+	}
 }

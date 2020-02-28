@@ -5,7 +5,6 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -17,23 +16,26 @@ public class Course {
 	@Column(name="id")
 	private Long id;
 	
-	@ManyToMany(mappedBy = "StudentlikedCourses")
+	/*@ManyToMany(mappedBy = "StudentlikedCourses")
 	private Set<Student> likes;
 	
 	@OneToMany(mappedBy = "course")
-	Set<CourseRating> ratings;
-	
+	Set<CourseRating> ratings;*/
+
+	@OneToMany(mappedBy = "course")
+	Set<CourseRegistration> registrations;
+
 	public Course() {}
 	
 	public Course(Long id) {
 		this.id = id;
 	}
 
-	public Course(Long id, Set<Student> likes) {
+	/*public Course(Long id, Set<Student> likes) {
 		super();
 		this.id = id;
 		this.likes = likes;
-	}
+	}*/
 
 	public Long getId() {
 		return id;
@@ -43,13 +45,19 @@ public class Course {
 		this.id = id;
 	}
 
-	public Set<Student> getLikes() {
+	/*public Set<Student> getLikes() {
 		return likes;
 	}
 
 	public void setLikes(Set<Student> likes) {
 		this.likes = likes;
+	}*/
+
+	public Set<CourseRegistration> getRegistrations() {
+		return registrations;
 	}
-	
-	
+
+	public void setRegistrations(Set<CourseRegistration> registrations) {
+		this.registrations = registrations;
+	}
 }
